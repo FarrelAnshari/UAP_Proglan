@@ -15,17 +15,26 @@ public class DataManager {
             String s;
             while ((s = br.readLine()) != null) {
                 String[] d = s.split(",");
-                Buku b = new Buku(d[0], d[1], d[2],
-                        Integer.parseInt(d[3]));
+
+                Buku b = new Buku(
+                        d[0],
+                        d[1],
+                        d[2],
+                        Integer.parseInt(d[3])
+                );
 
                 if (d.length > 4 && d[4].equals("1")) {
                     b.dipinjam = true;
                     b.peminjam = d[5];
                     b.kembali = LocalDate.parse(d[6]);
                 }
+
                 AppConfig.daftarBuku.add(b);
             }
-        } catch (Exception ignored) {}
+
+        } catch (Exception e) {
+            // file belum ada → aman diabaikan
+        }
     }
 
     public static void saveData() {
@@ -33,11 +42,20 @@ public class DataManager {
                 new FileWriter(AppConfig.FILE_BUKU))) {
 
             for (Buku b : AppConfig.daftarBuku) {
-                bw.write(b.id + "," + b.judul + "," +
-                        b.penulis + "," + b.tahun + "," +
-                        (b.dipinjam ? "1," + b.peminjam + "," + b.kembali : "0"));
+                bw.write(
+                        b.id + "," +
+                                b.judul + "," +
+                                b.penulis + "," +
+                                b.tahun + "," +
+                                (b.dipinjam
+                                        ? "1," + b.peminjam + "," + b.kembali
+                                        : "0")
+                );
                 bw.newLine();
             }
-        } catch (Exception ignored) {}
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

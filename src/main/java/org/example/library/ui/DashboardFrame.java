@@ -16,23 +16,29 @@ public class DashboardFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         GradientPanel panel = new GradientPanel(
-                AppConfig.isAdmin ? "ADMIN" : "SISWA");
+                AppConfig.isAdmin ? "ADMIN" : "SISWA"
+        );
 
-        panel.setLayout(new GridLayout(4,1,15,15));
-        panel.setBorder(BorderFactory.createEmptyBorder(40,80,40,80));
+        panel.setLayout(new GridLayout(4, 1, 15, 15));
+        panel.setBorder(
+                BorderFactory.createEmptyBorder(40, 80, 40, 80)
+        );
 
         JButton data = UIUtil.createButton("📚 Data Buku");
         JButton laporan = UIUtil.createButton("📊 Laporan");
         JButton keluar = UIUtil.createButton("❌ Keluar");
 
+        // ===== ACTION =====
         data.addActionListener(e -> {
             new BukuFrame().setVisible(true);
             dispose();
         });
 
         laporan.setEnabled(AppConfig.isAdmin);
-        laporan.addActionListener(e ->
-                new LaporanFrame().setVisible(true));
+        laporan.addActionListener(e -> {
+            new LaporanFrame().setVisible(true);
+            dispose();
+        });
 
         keluar.addActionListener(e -> {
             DataManager.saveData();

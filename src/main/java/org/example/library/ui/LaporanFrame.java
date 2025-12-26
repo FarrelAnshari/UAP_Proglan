@@ -12,16 +12,20 @@ public class LaporanFrame extends JFrame {
         setTitle("Laporan Peminjaman");
         setSize(600, 300);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         DefaultTableModel model = new DefaultTableModel(
-                new String[]{"Judul","Peminjam","Tanggal Kembali"}, 0);
+                new String[]{"Judul", "Peminjam", "Tanggal Kembali"}, 0
+        );
 
         JTable table = new JTable(model);
 
         for (Buku b : AppConfig.daftarBuku) {
             if (b.dipinjam) {
                 model.addRow(new Object[]{
-                        b.judul, b.peminjam, b.kembali
+                        b.judul,
+                        b.peminjam,
+                        b.kembali
                 });
             }
         }

@@ -15,8 +15,10 @@ public class LoginRoleFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         GradientPanel panel = new GradientPanel("PILIH LOGIN");
-        panel.setLayout(new GridLayout(3,1,15,15));
-        panel.setBorder(BorderFactory.createEmptyBorder(50,60,50,60));
+        panel.setLayout(new GridLayout(3, 1, 15, 15));
+        panel.setBorder(
+                BorderFactory.createEmptyBorder(50, 60, 50, 60)
+        );
 
         JButton admin = UIUtil.createButton("Admin");
         JButton siswa = UIUtil.createButton("Siswa");
@@ -36,6 +38,7 @@ public class LoginRoleFrame extends JFrame {
         panel.add(new JLabel());
         panel.add(admin);
         panel.add(siswa);
+
         add(panel);
     }
 }
