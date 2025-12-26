@@ -1,6 +1,5 @@
 package org.example.library;
 
-import org.example.library.util.DataManager;
 import org.example.library.ui.SplashScreen;
 
 import javax.swing.SwingUtilities;
